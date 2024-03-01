@@ -20,14 +20,14 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let mut conn = pool.get_conn()?;
 
     let mut new_user = String::new();
-    println!("Username \n");
+    println!("Username: ");
 
     io::stdin()
         .read_line(&mut new_user)
         .expect("Failed to register username");
 
     let mut new_user_password = String::new();
-    println!("Username \n");
+    println!("Password: ");
 
     io::stdin()
         .read_line(&mut new_user_password)
@@ -59,15 +59,4 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         println!("{:?}", user);
     }
     Ok(())
-    // // let user = String::new();
-    // let user = "Adrian";
-
-    // println!("________");
-
-    // let mut msg = String::new();
-    // io::stdin()
-    //     .read_line(&mut msg)
-    //     .expect("Failed to read message");
-
-    // println!("{user}: {msg}");
 }
