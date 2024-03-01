@@ -1,4 +1,6 @@
 use std::io;
+use std::env::{var,set_var};
+
 fn main() {
     // let user = String::new();
     let user = "Adrian";
