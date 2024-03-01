@@ -54,8 +54,14 @@ pub fn login_user() -> Result<(), Box<dyn std::error::Error>> {
         |(id, username, password)| User { id, username, password },
     ).expect("Failed to find user");
     
-    for user in find_user {
-        println!("{:?}", user);
+    if !find_user.is_empty(){
+        for user in find_user {
+          println!("{:?}", user);
+        }
+    }else {
+        print!("No user found  \n ");
+        login_user();
     }
+
     Ok(())
 }
