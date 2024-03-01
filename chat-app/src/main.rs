@@ -1,16 +1,23 @@
-use std::io;
-use std::env::{var,set_var};
+// use std::io;``
+// use mysql::*;
+// use mysql::prelude::*;
+use std::env;
+use dotenv::dotenv;
 
 fn main() {
-    // let user = String::new();
-    let user = "Adrian";
+    dotenv().ok();
+    let db_url = env::var("DB_URL").expect("Failed to find url");
 
-    println!("________");
+    print!("URL: {db_url}")
+    // // let user = String::new();
+    // let user = "Adrian";
 
-    let mut msg = String::new();
-    io::stdin()
-        .read_line(&mut msg)
-        .expect("Failed to read message");
+    // println!("________");
 
-    println!("{user}: {msg}");
+    // let mut msg = String::new();
+    // io::stdin()
+    //     .read_line(&mut msg)
+    //     .expect("Failed to read message");
+
+    // println!("{user}: {msg}");
 }
