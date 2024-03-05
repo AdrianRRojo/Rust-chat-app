@@ -47,9 +47,10 @@ pub fn login_user() -> Result<(), Box<dyn std::error::Error>> {
     
     if !find_user.is_empty(){
         for user in find_user {
-          println!("{:?}", user);
+        //   println!("{:?}", user);
+        super::chatroom::chatrooms(user.id);
         }
-        super::chatroom::chatrooms();
+        // super::chatroom::chatrooms(user_id);
     }else {
         print!("No user found  \n ");
         login_user();
