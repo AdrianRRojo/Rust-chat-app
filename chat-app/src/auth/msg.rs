@@ -1,6 +1,6 @@
 use std::io;
 use dotenv::dotenv;
-use mysql::prelude::*;
+// use mysql::prelude::*;
 use mysql::{prelude::Queryable, *};
 use std::{env};
 
@@ -12,7 +12,7 @@ struct Message {
     group_chat_id: i32,
     created_at: String,
 }
-fn msg() -> Result<(), Box<dyn std::error::Error>> {
+pub fn msg(group_chat_id: &str) -> Result<(), Box<dyn std::error::Error>> {
     dotenv().ok();
     let db_url = env::var("DB_URL").expect("Failed to find url");
     let opts = Opts::from_url(&db_url).expect("Invalid DB Url");
@@ -49,7 +49,7 @@ fn msg() -> Result<(), Box<dyn std::error::Error>> {
     )?;
 
     for msg in msgs {
-        println!("{:?}", msg);
+        println!("{}", msg.message);
     }
   
     Ok(())

@@ -1,7 +1,7 @@
 // mod msg;
 use std::io;
 use dotenv::dotenv;
-use mysql::prelude::*;
+// use mysql::prelude::*;
 use mysql::{prelude::Queryable, *};
 use std::{env};
 
@@ -43,6 +43,7 @@ pub fn chatrooms(user_id: i32) -> Result<(), Box<dyn std::error::Error>> {
 
     let mut group_chat_id = String::new();
 
+    println!("Select a chat room ID");
     io::stdin()
         .read_line(&mut group_chat_id)
         .expect("Error: Enter a valid ID");
@@ -57,7 +58,8 @@ pub fn chatrooms(user_id: i32) -> Result<(), Box<dyn std::error::Error>> {
         }, |(message,username) | RoomMsgs {message, username}).expect("Could not find chatroom");
 
     for msgs in enter_room {
-        println!("{:?}:{:?} ", msgs.username, msgs.message, );
-    }
+        println!("{}: {} ", msgs.username, msgs.message);
+    };
+    super::msg::msg(group_chat_id);
     Ok(())
 }
