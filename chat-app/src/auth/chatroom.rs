@@ -11,6 +11,11 @@ struct Chatrooms {
     name: String,
 }
 
+#[derive(Debug)]
+struct RoomMsgs{
+    message: String,
+    username: String,
+}
 
 pub fn chatrooms(user_id: i32) -> Result<(), Box<dyn std::error::Error>> {
     dotenv().ok();
@@ -20,7 +25,6 @@ pub fn chatrooms(user_id: i32) -> Result<(), Box<dyn std::error::Error>> {
 
     let mut conn = pool.get_conn()?;
 
-    let mut response = String::new();
 
     println!("Chat rooms \n----------- \n");
     
@@ -37,5 +41,23 @@ pub fn chatrooms(user_id: i32) -> Result<(), Box<dyn std::error::Error>> {
         println!("{:?}", room);
     }
 
+    let mut group_chat_id = String::new();
+
+    io::stdin()
+        .read_line(&mut group_chat_id)
+        .expect("Error: Enter a valid ID");
+
+    let group_chat_id = group_chat_id.trim();
+
+    let enter_room: Vec<RoomMsgs> = conn.exec_map(
+        "SELECT msg.message, u.username FROM messages msg 
+        LEFT JOIN users u on msg.user_id=u.id WHERE (msg.group_chat_id = :group_chat_id)", 
+        params! {
+            "group_chat_id" => &group_chat_id,
+        }, |(message,username) | RoomMsgs {message, username}).expect("Could not find chatroom");
+
+    for msgs in enter_room {
+        println!("{:?}:{:?} ", msgs.username, msgs.message, );
+    }
     Ok(())
 }
