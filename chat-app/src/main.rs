@@ -1,26 +1,7 @@
-mod register;
-mod login;
+mod auth;
 use std::io;
-// use dotenv::dotenv;
-// use mysql::prelude::*;
-// use mysql::{prelude::Queryable, *};
-// use std::{env};
-
-// #[derive(Debug)]
-// struct User {
-//     id: i32,
-//     username: String,
-//     password: String
-// }
-
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    // dotenv().ok();
-    // let db_url = env::var("DB_URL").expect("Failed to find url");
-    // let opts = Opts::from_url(&db_url).expect("Invalid DB Url");
-    // let pool = Pool::new(opts).expect("Failed to create pool");
-
-    // let mut conn = pool.get_conn()?;
 
     let mut response = String::new();
 
@@ -33,10 +14,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let response = response.trim().to_lowercase();
     
     if response == "login"{
-        login::login_user();
+        auth::login::login_user();
     }else if response == "register"{
-        println!("Register Now");
-        register::register_user();
+        auth::register::register_user();
     }else {
         print!("Error, please enter Login or Register {}", response);
     }
