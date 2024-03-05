@@ -6,12 +6,12 @@ This chat application is designed with the following objectives in mind
 - [x] Learn to use MySQL in Rust to manage database operations.
 - [ ] Continue learning to use Rust
 - [ ] Create a Graphical User Interface (GUI)
-- [ ] Implement user authentication to allow for login/logout functionalities.
+- [x] Implement user authentication to allow for login/logout functionalities.
 - [ ] Support the creation of group chats
 - [ ] Generate invite links to group chats, making it easier to add new members.
 - [x] Allow for message creation
-- [ ] Attach messages to the user who created them.
-- [ ] Display previous messages, allowing users to catch up on missed conversations.
+- [x] Attach messages to the user who created them.
+- [x] Display previous messages, allowing users to catch up on missed conversations.
 
 ### Bonus Objectives
 In addition to the main objectives, the following features are considered as bonus objectives:
@@ -19,8 +19,6 @@ In addition to the main objectives, the following features are considered as bon
 - [ ] Add seen/read.
 - [ ] Allow for image and video uploads
 - [ ] Add a GIF search option
-- [ ] Launch the app for download
-- [ ] Allow for message
 
 ### How to Download and Set Up This Application
 The application setup instructions are straightforward. Follow these steps to get started:
