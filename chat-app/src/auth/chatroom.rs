@@ -1,9 +1,12 @@
+use core::num;
 // mod msg;
 use std::io;
 use dotenv::dotenv;
 // use mysql::prelude::*;
 use mysql::{prelude::Queryable, *};
 use std::{env};
+use rand::seq::SliceRandom;
+
 
 #[derive(Debug)]
 struct Chatrooms {
@@ -61,6 +64,52 @@ pub fn chatrooms(user_id: i32) -> Result<(), Box<dyn std::error::Error>> {
         for room in find_chat_room {
             println!("{:?}", room);
         };
+    }else if find_a_new_room == "2"{
+        let letters = vec!['A','a','B','b','C','c','D','d','E','e','F','f','G','g','H','h','I','i','J','j','K','k','L','l','M','m','N','n','O','o','P','p','Q','q','R','r','S','s','T','t','U','u','V','v','W','w','X','x','Y','y','Z','z'];
+        let numbs = vec!['0','1','2','3','4','5','6','7','8','9'];
+        
+        let letter_len = 5; 
+        let num_len = 3;
+
+        let full_password_length = letter_len + num_len;
+
+        let mut letter_output: Vec<_> = letters
+        .choose_multiple(&mut rand::thread_rng(), letter_len.try_into().unwrap())
+        .collect();
+        
+        let mut numbs_output: Vec<_> = numbs
+        .choose_multiple(&mut rand::thread_rng(), num_len.try_into().unwrap())
+        .collect();
+
+        let mut pass_vec = vec![];
+
+        //combine the responses into 1 vec
+        pass_vec.append(&mut letter_output);
+        pass_vec.append(&mut numbs_output);
+
+        pass_vec.shuffle(&mut rand::thread_rng());
+
+        let password: String = pass_vec.into_iter().take(full_password_length as usize).collect();
+
+        println!("{}", password);
+
+        let mut new_name = String::new();
+        println!("Chat room name: ");
+
+        io::stdin()
+            .read_line(&mut new_name)
+            .expect("Error reading name");
+
+
+
+        conn.exec_drop(
+            "INSERT INTO chat_rooms (access_code, name) VALUES (:password, :new_name)",
+            params! {
+                "new_name" => new_name,
+                "password" => password
+            },
+        ).expect("Failed to create room");
+        println!("Success!");
     }else if find_a_new_room == "3"{
 
         let users_chat_rooms: Vec<Chatrooms> = conn.exec_map(

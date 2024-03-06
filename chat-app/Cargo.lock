@@ -220,6 +220,7 @@ dependencies = [
  "dotenv",
  "dotenv_codegen",
  "mysql",
+ "rand",
 ]
 
 [[package]]
