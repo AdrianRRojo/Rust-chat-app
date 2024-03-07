@@ -19,7 +19,10 @@ struct RoomMsgs{
     message: String,
     username: String,
 }
-
+#[derive(Debug)]
+struct ChatroomAccessCode {
+    access_code: String,
+}
 pub fn chatrooms(user_id: i32) -> Result<(), Box<dyn std::error::Error>> {
     dotenv().ok();
     let db_url = env::var("DB_URL").expect("Failed to find DB url");
@@ -144,7 +147,31 @@ pub fn chatrooms(user_id: i32) -> Result<(), Box<dyn std::error::Error>> {
         for msgs in enter_room {
             println!("{}: {} ", msgs.username, msgs.message);
         };
-        super::msg::msg(group_chat_id);
+
+        let mut chat_room_choice = String::new();
+        println!("Do you want to  \n 1. Enter a message \n 2. Get the access code?");
+
+        io::stdin()
+            .read_line(&mut chat_room_choice)
+            .expect("Error reading choice");
+
+        let chat_room_choice = chat_room_choice.trim();
+
+        if chat_room_choice == "1"{
+            let get_access_code: Vec<ChatroomAccessCode> = conn.exec_map(
+                "SELECT access_code FROM chat_rooms WHERE id = :group_chat_id", 
+                params! {
+                    "group_chat_id" => group_chat_id,
+                },
+                |(access_code)| ChatroomAccessCode { access_code },
+            ).expect("Error finding group chat");
+            
+            for access_code in get_access_code {
+                println!("Access code: {:?}", access_code.access_code);
+            }
+        }else{
+            super::msg::msg(group_chat_id);
+        }
     }
     Ok(())
 }

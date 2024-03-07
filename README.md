@@ -7,8 +7,8 @@ This chat application is designed with the following objectives in mind
 - [x] Continue learning to use Rust
 - [ ] Create a Graphical User Interface (GUI)
 - [x] Implement user authentication to allow for login/logout functionalities.
-- [ ] Support the creation of group chats
-- [ ] Generate invite links to group chats, making it easier to add new members.
+- [x] Support the creation of group chats
+- [x] Generate invite links to group chats, making it easier to add new members.
 - [x] Allow for message creation
 - [x] Attach messages to the user who created them.
 - [x] Display previous messages, allowing users to catch up on missed conversations.
