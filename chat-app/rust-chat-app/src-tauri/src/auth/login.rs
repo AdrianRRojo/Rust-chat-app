@@ -31,7 +31,7 @@ pub fn login_user(username: &str, password: &str) -> Result<(), Box<dyn std::err
     if !find_user.is_empty(){
         for user in find_user {
             println!("{:?}", user);
-            super::chatroom::chatrooms(user.id);
+            // super::chatroom::chatrooms(user.id);
            return Ok(());
         }
         Ok(())
