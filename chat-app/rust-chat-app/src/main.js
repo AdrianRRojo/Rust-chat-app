@@ -1,18 +1,21 @@
 const { invoke } = window.__TAURI__.tauri;
 
-let greetInputEl;
 let greetMsgEl;
+let username;
+let password;
 
-async function greet() {
+async function login() {
   // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-  greetMsgEl.textContent = await invoke("greet", { name: greetInputEl.value });
+  greetMsgEl.textContent = await invoke("login", { username: username.value, password: password.value });
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-  greetInputEl = document.querySelector("#greet-input");
+  username = document.querySelector("#username");
+  password = document.querySelector("#password");
   greetMsgEl = document.querySelector("#greet-msg");
-  document.querySelector("#greet-form").addEventListener("submit", (e) => {
+  document.querySelector("#login-form").addEventListener("submit", (e) => {
     e.preventDefault();
-    greet();
+    login();
   });
 });
+
