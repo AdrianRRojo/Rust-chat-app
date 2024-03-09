@@ -9,20 +9,25 @@
   </head>
 
   <body>
-    <div class="container">
-      <h1>Welcome to ChatMe!</h1>
-
+    <div class="">
       <div class="row">
         <a href="/">
           <img src="/assets/tauri.svg" class="logo tauri" alt="chatMe logo" />
         </a>
       </div>
-
-      <div>
-        <p>Hey!</p>
+      
+      <div id="chatoptions">
+        <!-- <h1>Chats</h1> -->
+        <div class="chatrooms">
+        </div>
+        <!-- <hr/> -->
+        <div id="options">
+          <span id="usernameDisplay" style="border-bottom: 2px solid white; margin-bottom: .8vw; width: 25%;text-align: center;"></span>
+          <a href="/new_chat">Create a new chat</a>
+          <a href="/join">Join a chat</a>
+        </div>
       </div>
 
-      <span id="usernameDisplay"></span>
     </div>
   </body>
 </html>

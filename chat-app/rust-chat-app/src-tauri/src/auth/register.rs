@@ -56,9 +56,9 @@ pub fn register_user() -> Result<(), Box<dyn std::error::Error>> {
         },
     )?;
 
-    for user in users {
-        // println!("{:?}", user);
-        super::chatroom::chatrooms(user.id);
-    }
+    // for user in users {
+    //     // println!("{:?}", user);
+    //     super::chatroom::chatrooms(user.id);
+    // }
     Ok(())
 }

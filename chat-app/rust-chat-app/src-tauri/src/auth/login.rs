@@ -5,12 +5,6 @@ use mysql::{prelude::Queryable, *};
 use std::env;
 use crate::auth::models::User;
 
-// #[derive(Debug)]
-// struct User {
-//     id: i32,
-//     username: String,
-//     password: String,
-// }
 pub fn login_user(username: &str, password: &str) -> Result<Option<User>, String> {
     dotenv().ok();
     let db_url = env::var("DB_URL").expect("Failed to find url");

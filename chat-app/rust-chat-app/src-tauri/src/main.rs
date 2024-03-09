@@ -2,6 +2,7 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 // use serde::Serialize;
 use crate::auth::models::User;
+use crate::auth::models::Chatrooms;
 mod auth;
 // use std::io;
 // #[derive(Debug, Serialize)]
@@ -18,9 +19,21 @@ fn login(username: &str, password: &str) -> Result<Vec<User>, String> {
         Err(e) => Err(e),
     }
 }
+
+#[tauri::command]
+fn load_chats(userId: i32) -> Result<Vec<Chatrooms>, String> {
+    // auth::chatroom::load_chats(&user_id)
+    match auth::chatroom::load_chats(userId) {
+        Ok(Some(chats)) => Ok(vec![chats]), // Convert the Option<chats> to Vec<User>
+        Ok(None) => Err("No user found".to_string()),
+        Err(e) => Err(e),
+    }
+
+}
+
 fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![login])
+        .invoke_handler(tauri::generate_handler![login, load_chats])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

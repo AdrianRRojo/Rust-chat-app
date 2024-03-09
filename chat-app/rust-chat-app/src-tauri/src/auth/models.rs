@@ -6,3 +6,9 @@ pub struct User {
     pub username: String,
     pub password: String,
 }
+
+#[derive(Debug, Serialize)]
+pub struct Chatrooms {
+    pub id: i32,
+    pub name: String,
+}

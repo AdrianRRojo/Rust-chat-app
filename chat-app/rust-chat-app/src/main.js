@@ -4,7 +4,6 @@ let msg;
 let username;
 let password;
 let response;
-// let user_info;
 let greet_msg;
 
 async function login() {
@@ -12,17 +11,17 @@ async function login() {
   invoke("login", { username: username.value, password: password.value })
   .then(users => {
     if (users) {
-      // Assuming users is the array of users, redirect or handle logged-in state
+      //  console.log(users[0].id);
       window.location.replace("/home.html");
-      console.log(users[0].username); // Log or use the users data as needed
-      // greet_msg = document.querySelector("#greet-msg");
-      // greet_msg.textContent = `Hello ${users[0].username}`;
+      // console.log(users[0].username);
       sessionStorage.setItem('username', users[0].username);
+      // console.log(users[0].id);
+      sessionStorage.setItem('userId', users[0].id);
+      
     }
   })
   .catch(error => {
     console.error(error); // Handle error, display login failure message
-    // Optionally update the UI to reflect the error
     msg.textContent = "Login failed: " + error;
   });
 }
