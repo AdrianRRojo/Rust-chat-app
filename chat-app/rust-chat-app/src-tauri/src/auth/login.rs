@@ -17,23 +17,6 @@ pub fn login_user(username: &str, password: &str) -> Result<(), Box<dyn std::err
     let pool = Pool::new(opts).expect("Failed to create pool");
 
     let mut conn = pool.get_conn()?;
-    
-    // let mut user = String::new();
-    // println!("Username: ");
-
-    // io::stdin()
-    //     .read_line(&mut user)
-    //     .expect("Failed to accept username");
-
-    // let mut user_password = String::new();
-    // println!("Password: ");
-
-    // io::stdin()
-    //     .read_line(&mut user_password)
-    //     .expect("Failed accept password");
-
-    // let user = user.trim();
-    // let user_password = user_password.trim();
 
     let find_user: Vec<User> = conn.exec_map(
         "SELECT id, username, password FROM users WHERE username = :username AND password = :password",
@@ -53,7 +36,7 @@ pub fn login_user(username: &str, password: &str) -> Result<(), Box<dyn std::err
         }
         Ok(())
     }else {
-        Err("No user found".into());
-        login_user();
+        Err("No user found".into())
+        // login_user();
     }
 }

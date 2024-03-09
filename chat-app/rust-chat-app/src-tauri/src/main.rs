@@ -9,7 +9,7 @@ mod auth;
 fn login(username: &str, password: &str) -> Result<String, String> {
     // format!("Hello, {}, {}! You've been greeted from Rust!", username, password)
     match auth::login::login_user(&username, &password) {
-        Ok(_) => Ok("Login successful".to_string()),
+        Ok(_) => Ok(format!("Hello {}", username)),
         Err(e) => Err(format!("Login failed: {}", e)),
     }
 }
