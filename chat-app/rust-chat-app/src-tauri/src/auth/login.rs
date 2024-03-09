@@ -53,7 +53,7 @@ pub fn login_user(username: &str, password: &str) -> Result<(), Box<dyn std::err
         }
         Ok(())
     }else {
-        Err("No user found".into())
-        // login_user();
+        Err("No user found".into());
+        login_user();
     }
 }
