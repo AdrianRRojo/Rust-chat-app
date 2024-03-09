@@ -11,7 +11,7 @@ async function login() {
   if(response){
     // msg.textContent = "Logged In";
     window.location.replace("/home.html");
-  }else{
+  }else if(response == false){
     msg.textContent = "Failed to Log in."
   }
 }
