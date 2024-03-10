@@ -50,6 +50,14 @@
   display: flex;
   flex-direction: column;
 }
+.chatrooms{
+  display: flex;
+  font-size: 3vw;
+  text-decoration: none !important;
+  justify-content: center;
+  color:white !important;
+  /* color: inherit !important; */
+}
 .row {
   display: flex;
   justify-content: center;

@@ -17,14 +17,22 @@
       </div>
       
       <div id="chatoptions">
-        <!-- <h1>Chats</h1> -->
-        <div class="chatrooms">
-        </div>
+        <h1>Chats</h1>
+          <div class="chatrooms"></div> 
         <!-- <hr/> -->
         <div id="options">
           <span id="usernameDisplay" style="border-bottom: 2px solid white; margin-bottom: .8vw; width: 25%;"></span>
           <a href="/new_chat">Create a new chat</a>
           <a href="/join">Join a chat</a>
+        </div>
+        
+
+        <div id="create_chat">
+          <form id="create_chat_form">
+              <input id="chat_name" placeholder="Chat name?"/>
+              <button type="submit">Submit</button>
+          </form>
+          <p id="msg"></p>
         </div>
       </div>
 
