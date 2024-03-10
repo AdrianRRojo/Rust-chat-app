@@ -24,8 +24,14 @@ async function load_chats() {
         });
 }
 
-async function create_chat(chat_name, user_id){
-    console.log(chat_name, user_id)
+async function create_chat_room(chat_name){
+    console.log("chat_name: ", chat_name);
+    invoke('create_chat_room', {name: chat_name})
+        .then(chats => {
+            console.log("chats: ", chats);
+        }).catch(error => {
+            console.warn(error);
+        })
 }
 window.addEventListener("DOMContentLoaded", () => {
     const username = sessionStorage.getItem('username');
@@ -37,11 +43,11 @@ window.addEventListener("DOMContentLoaded", () => {
     }
     document.querySelector("#create_chat_form").addEventListener("submit", (e) => {
         e.preventDefault();
+        // console.log('testing');
         let user_id = sessionStorage.getItem('userId');
         let chat_name = document.querySelector("#chat_name");
-        let msg = document.querySelector("#msg");
         if (user_id && chat_name){
-            create_chat(chat_name.value, user_id);
+            create_chat_room(chat_name.value);
         }
       });
 })

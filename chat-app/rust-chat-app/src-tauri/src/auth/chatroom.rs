@@ -45,15 +45,6 @@ pub fn load_chats(user_id: i32) -> Result<Option<Chatrooms>, String> {
             },
         )
         .expect("Failed to find valid chat rooms");
-
-    // for room in users_chat_rooms {
-    //     println!("{:?}", room);
-    // }
-    // if users_chat_rooms.is_empty() {
-    //     Err("No chats found".to_string())
-    // } else {
-    //     Ok(users_chat_rooms) // Directly return the vector of chat rooms
-    // }
     if users_chat_rooms.is_empty() {
         Err("No user found".to_string())
     } else {
@@ -61,7 +52,40 @@ pub fn load_chats(user_id: i32) -> Result<Option<Chatrooms>, String> {
     }
 }
 
-pub fn create_chat_room(user_id: i32, new_name: String) -> Result<String, String> {
+pub fn join_chats(user_id: i32, access_code: String) -> Result<bool, bool> {
+
+    dotenv().ok();
+    let db_url = env::var("DB_URL").expect("Failed to find DB url");
+    let opts = Opts::from_url(&db_url).expect("Invalid DB Url");
+    let pool = Pool::new(opts).expect("Failed to create pool");
+
+    let mut conn = pool.get_conn().expect("Error connectiong to DB");
+
+    let find_chat_room: Vec<Chatrooms> = conn
+        .exec_map(
+            "SELECT id, name FROM chat_rooms WHERE access_code = :code",
+            params! {
+                "access_code" => &access_code,
+            },
+            |(id, name)| Chatrooms { id, name },
+        ).expect("Error finding chat room");
+
+    if let Some(chat_room) = find_chat_room.get(0){
+        let chat_room_id = chat_room.id;
+        conn.exec_drop(
+            "INSERT INTO chat_table_permissions (chat_room_id, user_id) VALUES (:chat_room_id,:user_id)",
+            params! {
+                "chat_room_id" => &chat_room_id,
+                "user_id" => user_id
+            },
+        ).expect("Failed to join room"); 
+        
+    }
+
+    Ok(true)
+
+}
+pub fn create_chat_room(name: String) -> Result<String, String> {
     dotenv().ok();
     let db_url = env::var("DB_URL").expect("Failed to find DB url");
     let opts = Opts::from_url(&db_url).expect("Invalid DB Url");
@@ -102,24 +126,16 @@ pub fn create_chat_room(user_id: i32, new_name: String) -> Result<String, String
         .take(full_code_length as usize)
         .collect();
 
-    // println!("{}", code);
-
-    // let mut new_name = String::new();
-    // println!("Chat room name: ");
-
-    // io::stdin()
-    //     .read_line(&mut new_name)
-    //     .expect("Error reading name");
-
+    // println!("{}",user_id);
     conn.exec_drop(
-        "INSERT INTO chat_rooms (access_code, name) VALUES (:code, :new_name)",
+        "INSERT INTO chat_rooms (access_code,name) VALUES (:code,:name)",
         params! {
-            "new_name" => new_name,
+            "name" => name.clone(),
             "code" => code.clone()
         },
-    )
-    .expect("Failed to create room");
+    ).expect("Failed to create room");
     // println!("Success!");
+    join_chats(1, code.clone());
     Ok(code)
 }
 
