@@ -5,6 +5,7 @@ async function load_chats() {
     // console.log(userId);
     invoke("load_chats", { userId: parseInt(userId, 10) })
         .then(chatsFromInvoke => {
+            console.log(chatsFromInvoke);
             if (chatsFromInvoke && chatsFromInvoke.length > 0) {
                 const chatroomsContainer = document.querySelector('.chatrooms');
                 for (let i = 0; i < chatsFromInvoke.length; i++) {
@@ -13,7 +14,7 @@ async function load_chats() {
                     // chatroomsContainer.appendChild(text);
                     let newlink = document.createElement('a');
                     newlink.innerHTML = text;
-                    newlink.setAttribute('title', text);
+                    newlink.setAttribute('id', 'chatroom_links');
                     newlink.setAttribute('href', `/chat?=${text}/${chatsFromInvoke[i].id}`);
                     chatroomsContainer.appendChild(newlink);
                 }

@@ -52,11 +52,15 @@
 }
 .chatrooms{
   display: flex;
+  flex-direction: column;
   font-size: 3vw;
   text-decoration: none !important;
   justify-content: center;
   color:white !important;
   /* color: inherit !important; */
+}
+#chatroom_links{
+  margin-bottom: 1vw;
 }
 .row {
   display: flex;

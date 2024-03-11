@@ -24,7 +24,7 @@ struct ChatroomAccessCode {
     access_code: String,
 }
 
-pub fn load_chats(user_id: i32) -> Result<Option<Chatrooms>, String> {
+pub fn load_chats(user_id: i32) -> Result<Vec<Chatrooms>, String> {
     dotenv().ok();
     let db_url = env::var("DB_URL").expect("Failed to find DB url");
     let opts = Opts::from_url(&db_url).expect("Invalid DB Url");
@@ -48,9 +48,10 @@ pub fn load_chats(user_id: i32) -> Result<Option<Chatrooms>, String> {
     if users_chat_rooms.is_empty() {
         Err("No user found".to_string())
     } else {
-        Ok(users_chat_rooms.into_iter().next()) // Return the first user found
+        Ok(users_chat_rooms) // Return the first user found
     }
 }
+
 
 pub fn join_chat_room(user_id: i32, access_code: String) -> Result<Option<Chatrooms>, String> {
     dotenv().ok();
@@ -87,7 +88,7 @@ pub fn join_chat_room(user_id: i32, access_code: String) -> Result<Option<Chatro
     // }
 
     if let Some(chat_room) = find_chat_room.get(0) {
-        let chat_room_id = chat_room.id;
+                let chat_room_id = chat_room.id;
         conn.exec_drop(
                             "INSERT INTO chat_table_permissions (chat_room_id, user_id) VALUES (:chat_room_id,:user_id)",
                             params! {
