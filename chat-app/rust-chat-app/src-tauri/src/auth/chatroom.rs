@@ -37,14 +37,14 @@ pub fn load_chats(user_id: i32) -> Result<Option<Chatrooms>, String> {
             "SELECT ctp.chat_room_id, cr.name FROM chat_table_permissions ctp
         LEFT JOIN chat_rooms cr ON cr.id = ctp.chat_room_id WHERE ctp.user_id = :user_id",
             params! {
-                "user_id" => user_id, // Make sure `user_id` is the correct type, e.g., i32
+                "user_id" => user_id,
             },
             |(chat_room_id, name)| Chatrooms {
                 id: chat_room_id,
                 name,
             },
         )
-        .expect("Failed to find valid chat rooms");
+        .expect("Failed to find chat rooms");
     if users_chat_rooms.is_empty() {
         Err("No user found".to_string())
     } else {
@@ -52,8 +52,7 @@ pub fn load_chats(user_id: i32) -> Result<Option<Chatrooms>, String> {
     }
 }
 
-pub fn join_chats(user_id: i32, access_code: String) -> Result<bool, bool> {
-
+pub fn join_chat_room(user_id: i32, access_code: String) -> Result<Option<Chatrooms>, String> {
     dotenv().ok();
     let db_url = env::var("DB_URL").expect("Failed to find DB url");
     let opts = Opts::from_url(&db_url).expect("Invalid DB Url");
@@ -63,27 +62,43 @@ pub fn join_chats(user_id: i32, access_code: String) -> Result<bool, bool> {
 
     let find_chat_room: Vec<Chatrooms> = conn
         .exec_map(
-            "SELECT id, name FROM chat_rooms WHERE access_code = :code",
+            "SELECT id, name FROM chat_rooms WHERE access_code = :access_code",
             params! {
                 "access_code" => &access_code,
             },
             |(id, name)| Chatrooms { id, name },
-        ).expect("Error finding chat room");
+        )
+        .expect("Error finding chat room");
 
-    if let Some(chat_room) = find_chat_room.get(0){
+    // if let Some(chat_room) = find_chat_room.get(0) {
+    //     let chat_room_id = chat_room.id;
+        println!("{}", user_id);
+    //     Ok(find_chat_room.to_string())
+    //     // conn.exec_drop(
+    //     //             "INSERT INTO chat_table_permissions (chat_room_id, user_id) VALUES (:chat_room_id,:user_id)",
+    //     //             params! {
+    //     //                 "chat_room_id" => &chat_room_id,
+    //     //                 "user_id" => &user_id
+    //     //             },
+    //     //         ).expect("Failed to join room");
+    //     // Ok(true) 
+    // } else {
+    //     Err("No chats found".to_string())
+    // }
+
+    if let Some(chat_room) = find_chat_room.get(0) {
         let chat_room_id = chat_room.id;
         conn.exec_drop(
-            "INSERT INTO chat_table_permissions (chat_room_id, user_id) VALUES (:chat_room_id,:user_id)",
-            params! {
-                "chat_room_id" => &chat_room_id,
-                "user_id" => user_id
-            },
-        ).expect("Failed to join room"); 
-        
+                            "INSERT INTO chat_table_permissions (chat_room_id, user_id) VALUES (:chat_room_id,:user_id)",
+                            params! {
+                                "chat_room_id" => &chat_room_id,
+                                "user_id" => &user_id
+                            },
+                        ).expect("Failed to join room");
+        Ok(find_chat_room.into_iter().next())
+    } else {
+        Err("No user found".to_string())
     }
-
-    Ok(true)
-
 }
 pub fn create_chat_room(name: String) -> Result<String, String> {
     dotenv().ok();
@@ -133,9 +148,10 @@ pub fn create_chat_room(name: String) -> Result<String, String> {
             "name" => name.clone(),
             "code" => code.clone()
         },
-    ).expect("Failed to create room");
+    )
+    .expect("Failed to create room");
     // println!("Success!");
-    join_chats(1, code.clone());
+    // join_chats(1, code.clone());
     Ok(code)
 }
 

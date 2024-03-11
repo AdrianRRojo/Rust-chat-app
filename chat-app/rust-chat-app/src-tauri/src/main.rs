@@ -34,7 +34,7 @@ fn load_chats(userId: i32) -> Result<Vec<Chatrooms>, String> {
 #[tauri::command]
 fn create_chat_room(name: String) -> Result<String, String> {
     // auth::chatroom::load_chats(&user_id)
-    let mut new_name = name; 
+    let new_name = name; 
     match auth::chatroom::create_chat_room(new_name) {
         Ok(string) => Ok(string), // Convert the Option<chats> to Vec<User>
         // Ok(None) => Err("No chats found".to_string()),
@@ -42,10 +42,21 @@ fn create_chat_room(name: String) -> Result<String, String> {
     }
 
 }
+#[tauri::command]
+fn join_chat_room(user_id: i32, access_code: String) -> Result<Vec<Chatrooms>, String>{
+    // auth::chatroom::load_chats(&user_id)
+    // let mut new_name = name; 
+    match auth::chatroom::join_chat_room(user_id, access_code) {
+        Ok(Some(chats)) => Ok(vec![chats]), // Convert the Option<chats> to Vec<User>
+        Ok(None) => Err("No chats found".to_string()),
+        Err(e) => Err(e),
+    }
+
+}
 
 fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![login, load_chats,create_chat_room])
+        .invoke_handler(tauri::generate_handler![login, load_chats,create_chat_room, join_chat_room])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
