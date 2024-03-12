@@ -4,6 +4,7 @@ use dotenv::dotenv;
 // use std::io;
 // use mysql::prelude::*;
 use crate::auth::models::Chatrooms;
+use crate::auth::models::RoomMsgs;
 use mysql::{prelude::Queryable, *};
 use rand::seq::SliceRandom;
 use std::env;
@@ -14,11 +15,6 @@ use std::env;
 //     name: String,
 // }
 
-#[derive(Debug)]
-struct RoomMsgs {
-    message: String,
-    username: String,
-}
 #[derive(Debug)]
 struct ChatroomAccessCode {
     access_code: String,
@@ -52,6 +48,31 @@ pub fn load_chats(user_id: i32) -> Result<Vec<Chatrooms>, String> {
     }
 }
 
+pub fn load_msgs(chat_id: i32) -> Result<Vec<RoomMsgs>, String> {
+    dotenv().ok();
+    let db_url = env::var("DB_URL").expect("Failed to find DB url");
+    let opts = Opts::from_url(&db_url).expect("Invalid DB Url");
+    let pool = Pool::new(opts).expect("Failed to create pool");
+
+    let mut conn = pool.get_conn().expect("Error");
+
+    let load_chat_msgs: Vec<RoomMsgs> = conn
+        .exec_map(
+            "SELECT msg.message, u.username FROM messages msg
+                    LEFT JOIN users u on msg.user_id=u.id WHERE (msg.group_chat_id = :chat_id)",
+            params! {
+                "chat_id" => &chat_id,
+            },
+            |(message, username)| RoomMsgs { message, username },
+        )
+        .expect("Could not find chatroom");
+
+    if load_chat_msgs.is_empty() {
+        Err("No messages found".to_string())
+    } else {
+        Ok(load_chat_msgs) // Return the first user found
+    }
+}
 
 pub fn join_chat_room(user_id: i32, access_code: String) -> Result<Option<Chatrooms>, String> {
     dotenv().ok();
@@ -73,7 +94,7 @@ pub fn join_chat_room(user_id: i32, access_code: String) -> Result<Option<Chatro
 
     // if let Some(chat_room) = find_chat_room.get(0) {
     //     let chat_room_id = chat_room.id;
-        println!("{}", user_id);
+    println!("{}", user_id);
     //     Ok(find_chat_room.to_string())
     //     // conn.exec_drop(
     //     //             "INSERT INTO chat_table_permissions (chat_room_id, user_id) VALUES (:chat_room_id,:user_id)",
@@ -82,13 +103,13 @@ pub fn join_chat_room(user_id: i32, access_code: String) -> Result<Option<Chatro
     //     //                 "user_id" => &user_id
     //     //             },
     //     //         ).expect("Failed to join room");
-    //     // Ok(true) 
+    //     // Ok(true)
     // } else {
     //     Err("No chats found".to_string())
     // }
 
     if let Some(chat_room) = find_chat_room.get(0) {
-                let chat_room_id = chat_room.id;
+        let chat_room_id = chat_room.id;
         conn.exec_drop(
                             "INSERT INTO chat_table_permissions (chat_room_id, user_id) VALUES (:chat_room_id,:user_id)",
                             params! {

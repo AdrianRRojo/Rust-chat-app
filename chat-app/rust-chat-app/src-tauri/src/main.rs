@@ -3,13 +3,9 @@
 // use serde::Serialize;
 use crate::auth::models::User;
 use crate::auth::models::Chatrooms;
+use crate::auth::models::RoomMsgs;
 mod auth;
-// use std::io;
-// #[derive(Debug, Serialize)]
-// struct User {
-//     id: i32,
-//     username: String,
-// }
+
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
 #[tauri::command]
 fn login(username: &str, password: &str) -> Result<Vec<User>, String> {
@@ -19,15 +15,6 @@ fn login(username: &str, password: &str) -> Result<Vec<User>, String> {
         Err(e) => Err(e),
     }
 }
-
-
-// fn load_chats(userId: i32) -> Result<Vec<Chatrooms>, String> {
-//     // auth::chatroom::load_chats(&user_id)
-//     match auth::chatroom::load_chats(userId) {
-//         Ok(Some(chats)) => Ok(vec![chats]), // Convert the Option<chats> to Vec<User>
-//         Ok(None) => Err("No chats found".to_string()),
-//         Err(e) => Err(e),
-//     }
 
 #[tauri::command]
 fn load_chats(user_id: i32) -> Result<Vec<Chatrooms>, String> {        
@@ -59,10 +46,14 @@ fn join_chat_room(user_id: i32, access_code: String) -> Result<Vec<Chatrooms>, S
     }
 
 }
+#[tauri::command]
+fn load_msgs(chat_id: i32) -> Result<Vec<RoomMsgs>, String>{
+    auth::chatroom::load_msgs(chat_id)      
+}
 
 fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![login, load_chats,create_chat_room, join_chat_room])
+        .invoke_handler(tauri::generate_handler![login, load_chats,create_chat_room, join_chat_room, load_msgs])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

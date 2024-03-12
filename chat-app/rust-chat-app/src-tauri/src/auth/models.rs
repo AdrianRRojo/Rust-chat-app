@@ -12,3 +12,9 @@ pub struct Chatrooms {
     pub id: i32,
     pub name: String,
 }
+
+#[derive(Debug, Serialize)]
+pub struct RoomMsgs {
+    pub message: String,
+    pub username: String,
+}
