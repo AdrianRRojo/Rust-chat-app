@@ -49,6 +49,7 @@
 #chatoptions, #options{
   display: flex;
   flex-direction: column;
+  margin-bottom: 1vw;
 }
 .chatrooms{
   display: flex;

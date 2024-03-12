@@ -35,10 +35,13 @@ fn load_chats(user_id: i32) -> Result<Vec<Chatrooms>, String> {
 }
 
 #[tauri::command]
-fn create_chat_room(name: String) -> Result<String, String> {
+fn create_chat_room(name: String, user_id: String) -> Result<String, String> {
     // auth::chatroom::load_chats(&user_id)
     let new_name = name; 
-    match auth::chatroom::create_chat_room(new_name) {
+
+    // value comes in as a string, covert this to i32
+    let user_id_to_int = user_id.parse::<i32>().unwrap();
+    match auth::chatroom::create_chat_room(new_name,user_id_to_int) {
         Ok(string) => Ok(string), // Convert the Option<chats> to Vec<User>
         // Ok(None) => Err("No chats found".to_string()),
         Err(e) => Err(e),

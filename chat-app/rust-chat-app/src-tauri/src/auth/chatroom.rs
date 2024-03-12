@@ -101,7 +101,7 @@ pub fn join_chat_room(user_id: i32, access_code: String) -> Result<Option<Chatro
         Err("No user found".to_string())
     }
 }
-pub fn create_chat_room(name: String) -> Result<String, String> {
+pub fn create_chat_room(name: String, user_id: i32) -> Result<String, String> {
     dotenv().ok();
     let db_url = env::var("DB_URL").expect("Failed to find DB url");
     let opts = Opts::from_url(&db_url).expect("Invalid DB Url");
@@ -152,7 +152,7 @@ pub fn create_chat_room(name: String) -> Result<String, String> {
     )
     .expect("Failed to create room");
     // println!("Success!");
-    // join_chats(1, code.clone());
+    join_chat_room(user_id, code.clone());
     Ok(code)
 }
 

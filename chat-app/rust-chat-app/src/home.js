@@ -25,9 +25,9 @@ async function load_chats() {
         });
 }
 
-async function create_chat_room(chat_name){
+async function create_chat_room(chat_name, user_id){
     console.log("chat_name: ", chat_name);
-    invoke('create_chat_room', {name: chat_name})
+    invoke('create_chat_room', {name: chat_name, userId: user_id})
         .then(chats => {
             console.log("chats: ", chats);
         }).catch(error => {
@@ -60,7 +60,7 @@ window.addEventListener("DOMContentLoaded", () => {
         let access_code = document.querySelector("#access_code");
 
         if (user_id && chat_name){
-            create_chat_room(chat_name.value);
+            create_chat_room(chat_name.value, user_id);
         }
         if (user_id && access_code){
             // join_chat_room(user_id, access_code.value);
