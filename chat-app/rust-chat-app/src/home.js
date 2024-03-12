@@ -15,7 +15,8 @@ async function load_chats() {
                     let newlink = document.createElement('a');
                     newlink.innerHTML = text;
                     newlink.setAttribute('id', 'chatroom_links');
-                    newlink.setAttribute('href', `/chat?=${text}/${chatsFromInvoke[i].id}`);
+                    // newlink.setAttribute('href', `/charoom.html?name=${text}&id=${chatsFromInvoke[i].id}`);
+                    newlink.href = `/chatroom.html?name=${text}&id=${chatsFromInvoke[i].id}`;
                     chatroomsContainer.appendChild(newlink);
                 }
             }
