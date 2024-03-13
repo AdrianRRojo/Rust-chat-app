@@ -50,10 +50,20 @@ fn join_chat_room(user_id: i32, access_code: String) -> Result<Vec<Chatrooms>, S
 fn load_msgs(chat_id: i32) -> Result<Vec<RoomMsgs>, String>{
     auth::chatroom::load_msgs(chat_id)      
 }
+#[tauri::command]
+fn send_msg(chat_id: String, user_id: String, user_msg: String) -> Result<String, String>{
+    let user_id_to_int = user_id.parse::<i32>().unwrap();
+    let chat_id_to_int = chat_id.parse::<i32>().unwrap();
+    let user_msg1 = user_msg;
+    match auth::msg::send_msg(chat_id_to_int,user_id_to_int,user_msg1){
+        Ok(string) => Ok(string),
+        Err(e) => Err(e)
+    }
+}
 
 fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![login, load_chats,create_chat_room, join_chat_room, load_msgs])
+        .invoke_handler(tauri::generate_handler![login, load_chats,create_chat_room, join_chat_room, load_msgs,send_msg])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

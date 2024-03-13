@@ -28,21 +28,38 @@ async function load_msgs(chat_id){
         }) 
 }
 
+async function send_msg(chat_id, user_id, user_msg){
+    invoke("send_msg", {chatId: chat_id, userId: user_id, userMsg: user_msg })
+        .then(msg =>{
+            console.log(msg);
+        }).catch(error => {
+            console.warn(error);
+        })
+}
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Parse the URL query parameters
     const params = new URLSearchParams(window.location.search);
     const chatName = params.get('name');
     const chat_id = params.get('id');
 
     // Update the page title and chatroom name placeholder
-    document.title = chatName; // Set the browser tab title to the chatroom name
+    document.title = chatName; 
     document.getElementById('chatroom-name').textContent = chatName;
-
-    // Here you would typically make a call to your backend to fetch chatroom data using the chatId
-    // For this example, let's just update the chatroom content placeholder
     document.getElementById('chatroom-content').textContent = `Welcome to ${chatName}! Chat ID is ${chat_id}.`;
 
     load_msgs(chat_id);
-    // TODO: Fetch and display the chatroom's actual content using chatId
+    
+    document.querySelector("#msg_form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        // console.log('testing');
+        let user_id = sessionStorage.getItem('userId');
+        let user_msg = document.querySelector('#user_msg')
+        if (user_id && user_msg){
+            send_msg(chat_id, user_id, user_msg.value);
+            // console.log(access_code.value);
+        }else{
+            console.warn("Chat: ",chat_id, "User: ", user_id, "Msg: ", user_msg.value);
+        }
+      });
+
 });
