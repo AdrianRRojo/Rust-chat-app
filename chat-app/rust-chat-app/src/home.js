@@ -41,6 +41,7 @@ async function join_chat_room(user_id, access_code){
     invoke('join_chat_room', {userId: parseInt(user_id, 10), accessCode: access_code})
         .then(chats => {
             console.log("chats: ", chats);
+            location.reload();
         }).catch(error => {
             console.warn(error);
         })
