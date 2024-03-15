@@ -15,7 +15,14 @@ fn login(username: &str, password: &str) -> Result<Vec<User>, String> {
         Err(e) => Err(e),
     }
 }
-
+#[tauri::command]
+fn register(username: &str, password: &str, email: &str) -> Result<Vec<User>, String> {
+    match auth::register::register_user(&username, &password, &email) {
+        Ok(Some(user)) => Ok(vec![user]), // Convert the Option<User> to Vec<User>
+        Ok(None) => Err("No user found".to_string()),
+        Err(e) => Err(e),
+    }
+}
 #[tauri::command]
 fn load_chats(user_id: i32) -> Result<Vec<Chatrooms>, String> {        
     auth::chatroom::load_chats(user_id)
@@ -63,7 +70,7 @@ fn send_msg(chat_id: String, user_id: String, user_msg: String) -> Result<String
 
 fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![login, load_chats,create_chat_room, join_chat_room, load_msgs,send_msg])
+        .invoke_handler(tauri::generate_handler![login,register, load_chats,create_chat_room, join_chat_room, load_msgs,send_msg])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

@@ -1,23 +1,23 @@
 const { invoke } = window.__TAURI__.tauri;
-async function register() {
+async function register(username, password, email) {
     // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-    console.log("Yes!");
-    // invoke("register", { username: username.value, password: password.value })
-    // .then(users => {
-    //   if (users) {
-    //     //  console.log(users[0].id);
-    //     window.location.replace("/home.html");
-    //     // console.log(users[0].username);
-    //     sessionStorage.setItem('username', users[0].username);
-    //     // console.log(users[0].id);
-    //     sessionStorage.setItem('userId', users[0].id);
+    // console.log("Yes!");
+    invoke("register", { username: username, password: password, email: email })
+    .then(users => {
+      if (users) {
+        //  console.log(users[0].id);
+        window.location.replace("/home.html");
+        // console.log(users[0].username);
+        sessionStorage.setItem('username', users[0].username);
+        // console.log(users[0].id);
+        sessionStorage.setItem('userId', users[0].id);
         
-    //   }
-    // })
-    // .catch(error => {
-    //   console.error(error); // Handle error, display register failure message
-    //   msg.textContent = "register failed: " + error;
-    // });
+      }
+    })
+    .catch(error => {
+      console.error(error); // Handle error, display register failure message
+      msg.textContent = "register failed: " + error;
+    });
   }
   window.addEventListener("DOMContentLoaded", () => {
    let username = document.querySelector("#reg_username");
@@ -33,7 +33,7 @@ async function register() {
                 console.log("confirm_password", password);
                 msg.textContent = "Passwords do not match";
             }else{
-                register();
+                register(username.value, password.value, email.value);
             }
         }else{
             console.log("username", username);
