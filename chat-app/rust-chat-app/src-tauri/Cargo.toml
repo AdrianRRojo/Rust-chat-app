@@ -18,6 +18,7 @@ dotenv = "0.15.0"
 dotenv_codegen = "0.15.0"
 mysql = "*"
 rand = "0.8.5"
+bcrypt = "0.10.1"
 
 [features]
 # This feature is used for production builds or when a dev server is not specified, DO NOT REMOVE!!

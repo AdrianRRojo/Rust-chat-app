@@ -9,17 +9,6 @@ use mysql::{prelude::Queryable, *};
 use rand::seq::SliceRandom;
 use std::env;
 
-// #[derive(Debug)]
-// struct Chatrooms {
-//     id: i32,
-//     name: String,
-// }
-
-#[derive(Debug)]
-struct ChatroomAccessCode {
-    access_code: String,
-}
-
 pub fn load_chats(user_id: i32) -> Result<Vec<Chatrooms>, String> {
     dotenv().ok();
     let db_url = env::var("DB_URL").expect("Failed to find DB url");
