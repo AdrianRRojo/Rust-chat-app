@@ -15,12 +15,18 @@
 
   <body>
     <div class="container">
-      <h1>Register</h1>
+      <!-- <h1>Register</h1> -->
 
       <div class="row">
         <a href="/">
           <img src="/assets/tauri.svg" class="logo tauri" alt="chatMe logo" />
         </a>
+      </div>
+      <div id="rules">
+        <h5><u>Your Password must meet all requirements</u></h5>
+          <p> Must be at least 8 characters in length</p>
+          <p> Must include a number </p>
+          <p> Must include a special character (i.e: !?#)</p>
       </div>
       <form id="register-form">
         <input id="email" type="email" placeholder="Email" />
@@ -31,9 +37,7 @@
 
         <button type="submit">Register</button>
       </form>
-      <p>Don't have an account? <a href="/register.html"><u>Register here.</u></a></p>
       <p id="msg"></p>
-      <p id="greet-msg"></p>
     </div>
   </body>
 </html>

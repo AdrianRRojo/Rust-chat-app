@@ -29,7 +29,7 @@
   will-change: filter;
   transition: 0.75s;
 }
-#login-form {
+#login-form, #register-form {
   display: flex;
   flex-direction: column;
   align-items: center; /* This centers the form items horizontally */
@@ -39,9 +39,22 @@
 }
 
 #login-form input, 
-#login-form button {
+#login-form button,
+#register-form input, 
+#register-form button {
   margin-bottom: 1vw; /* Adjust spacing between form items */
   width: 50%; /* This sets the width of input and button elements */
+}
+#rules{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+  text-align: left;
+  position: absolute;
+}
+#rules p{
+  margin-top: -15px;
 }
 .logo.tauri:hover {
   filter: drop-shadow(0 0 2em #24c8db);
