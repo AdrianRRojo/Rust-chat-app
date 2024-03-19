@@ -22,26 +22,48 @@
         <!-- <hr/> -->
         <div id="options">
           <span id="usernameDisplay" style="border-bottom: 2px solid white; margin-bottom: .8vw; width: 25%;"></span>
-          <a href="/new_chat">Create a new chat</a>
-          <a href="/join">Join a chat</a>
+          <button class="optionBtn" onclick="show('create_chat')" >Create a new chat</button>
+          <div id="create_chat">
+            <form id="create_chat_form">
+                <input id="chat_name" placeholder="Chat name?"/>
+                <button type="submit">Submit</button>
+            </form>
+          </div>
         </div>
-        
+          <button class="optionBtn" onclick="show('join_chat')" >Join a chat</button>
+          <div id="join_chat">
+            <form id="join_chat_form">
+                <input id="access_code" placeholder="Access code"/>
+                <button type="submit">Submit</button>
+            </form>
+          </div>
+        </div>
+    </div>
+
+        <p id="msg"></p>
+<!--         
         <div id="join_chat">
           <form id="join_chat_form">
               <input id="access_code" placeholder="Access code"/>
               <button type="submit">Submit</button>
           </form>
-        </div>
-        <div id="create_chat">
+        </div> -->
+        <!-- <div id="create_chat">
           <form id="create_chat_form">
               <input id="chat_name" placeholder="Chat name?"/>
               <button type="submit">Submit</button>
           </form>
           <p id="msg"></p>
         </div>
-      </div>
+      </div> -->
 
     </div>
   </body>
 </html>
 
+<script>
+      function show(divId){
+        let div = document.querySelector(`#${divId}`);
+        div.style.display = "block"; 
+    }
+</script>

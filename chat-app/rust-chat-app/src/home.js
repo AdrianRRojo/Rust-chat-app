@@ -1,4 +1,4 @@
-const { invoke } = window.__TAURI__.tauri;
+ const { invoke } = window.__TAURI__.tauri;
 // let msg;
 async function load_chats() {
     let userId = sessionStorage.getItem('userId');
@@ -31,6 +31,7 @@ async function create_chat_room(chat_name, user_id){
     invoke('create_chat_room', {name: chat_name, userId: user_id})
         .then(chats => {
             console.log("chats: ", chats);
+            location.reload();
         }).catch(error => {
             console.warn(error);
         })
@@ -54,13 +55,14 @@ window.addEventListener("DOMContentLoaded", () => {
         usernameDisplay.textContent = `${username}`;
         load_chats();
     }
+
     document.querySelector("#create_chat_form").addEventListener("submit", (e) => {
         e.preventDefault();
         // console.log('testing');
+
         let user_id = sessionStorage.getItem('userId');
         let chat_name = document.querySelector("#chat_name");
         let access_code = document.querySelector("#access_code");
-
         if (user_id && chat_name){
             create_chat_room(chat_name.value, user_id);
         }

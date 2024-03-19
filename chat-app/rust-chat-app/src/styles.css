@@ -64,6 +64,11 @@
   flex-direction: column;
   margin-bottom: 1vw;
 }
+.optionBtn{
+  width: 20vw;
+  margin-bottom: 1vw;
+  margin-left: 2.5vw;
+}
 .chatrooms{
   display: flex;
   flex-direction: column;
@@ -75,6 +80,9 @@
 }
 #chatroom_links{
   margin-bottom: 1vw;
+}
+#create_chat,#join_chat{
+  display: none;
 }
 .row {
   display: flex;
