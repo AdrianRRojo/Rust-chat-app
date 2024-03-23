@@ -1,0 +1,63 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ChatMe</title>
+    <script src="account.js" defer></script>
+  </head>
+
+  <body>
+    <div class="">
+      <div class="row">
+        <a href="/home.html">
+          <img src="/assets/chatMe_logo_noBG.png" class="logo" alt="chatMe logo" />
+        </a>
+      </div>
+    </div>
+    <div class="account_content">
+        <div class="account_options">
+            <button class="optionBtn" onclick="display_form('account_info')">Account information</button>
+            <button class="optionBtn" onclick="display_form('password_and_security')">Password and security</button>
+            <button class="optionBtn" onclick="display_form('delete_account')">Delete account</button>
+        </div>
+        <div id="account_info">
+            <p>account_info</p>
+        </div>
+        <div id="password_and_security">
+            <p>password_and_security</p>
+        </div>
+        <div id="delete_account">
+            <p>delete_account</p>
+        </div>
+    </div>
+  </body>
+</html>
+
+<script>
+        function display_form(form){
+        const account_info = document.querySelector("#account_info");
+        const password_and_security = document.querySelector("#password_and_security");
+        const delete_account = document.querySelector("#delete_account");
+
+
+        if (form == "account_info"){
+            account_info.style.display = "block";
+            password_and_security.style.display = "none";
+            delete_account.style.display = "none";
+        }else if(form == "password_and_security"){
+            account_info.style.display = "none";
+            password_and_security.style.display = "block";
+            delete_account.style.display = "none";
+        }else if(form == "delete_account"){
+            account_info.style.display = "none";
+            password_and_security.style.display = "none";
+            delete_account.style.display = "block";
+        }else{
+            console.log(form);
+        }
+    }
+
+</script>

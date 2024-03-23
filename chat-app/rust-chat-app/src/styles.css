@@ -66,9 +66,12 @@
   margin-bottom: 1vw;
 }
 .optionBtn{
-  width: 20vw;
+  width: 25vw;
   margin-bottom: 1vw;
-  margin-left: 2.5vw;
+  outline: none !important;
+}
+.optionBtn:focus {
+  outline: none !important;
 }
 .chatrooms{
   display: flex;
@@ -199,4 +202,11 @@ button {
   button:active {
     background-color: #0f0f0f69;
   }
+}
+.account_options{
+  flex-direction: column;
+  display: flex;
+}
+#account_info, #password_and_security, #delete_account{
+  display: none;
 }
