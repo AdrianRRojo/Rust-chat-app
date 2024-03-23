@@ -24,13 +24,23 @@
             <button class="optionBtn" onclick="display_form('delete_account')">Delete account</button>
         </div>
         <div id="account_info">
-            <p>account_info</p>
+            <form id="account_info_form">
+                <input id="account_username" placeholder="Username: " />
+                <input id="account_email" placeholder="Email: " />
+                <input id="account_pfp" type="file" />
+            </form>
         </div>
         <div id="password_and_security">
             <p>password_and_security</p>
+            <form id="password_form">
+                <input id="account_curr_password" placeholder="Current password"/>
+                <input id="account_new_password" placeholder="New password"/>
+                <input id="account_confirm_password" placeholder="New password"/>
+            </form>
         </div>
         <div id="delete_account">
-            <p>delete_account</p>
+            <p>Deleting your account is permanent. If you wish to proceed enter "delete"</p>
+            <input id="delete_input" placeholder="Delete"/>
         </div>
     </div>
   </body>
