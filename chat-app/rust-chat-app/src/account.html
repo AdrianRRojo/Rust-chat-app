@@ -28,7 +28,9 @@
                 <input id="account_username" placeholder="Username: " />
                 <input id="account_email" placeholder="Email: " />
                 <input id="account_pfp" type="file" />
+                <button type="submit" id="account_form_button">Submit</button>
             </form>
+            <p id="account_msg"></p>
         </div>
         <div id="password_and_security">
             <p>password_and_security</p>
@@ -36,12 +38,19 @@
                 <input id="account_curr_password" placeholder="Current password"/>
                 <input id="account_new_password" placeholder="New password"/>
                 <input id="account_confirm_password" placeholder="New password"/>
+                <button type="submit" id="password_form_button">Submit</button>
             </form>
+            <p id="password_msg"></p>
         </div>
         <div id="delete_account">
             <p>Deleting your account is permanent. If you wish to proceed enter "delete"</p>
-            <input id="delete_input" placeholder="Delete"/>
+            <form id="delete_form">
+              <input id="delete_input" placeholder="Delete"/>
+              <button type="submit" id="delete_form_button">Submit</button>
+            </form>
+            
         </div>
+        <p id="delete_msg"></p>
     </div>
   </body>
 </html>
