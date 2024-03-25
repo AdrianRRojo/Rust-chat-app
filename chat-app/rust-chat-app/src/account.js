@@ -8,7 +8,7 @@ window.addEventListener("DOMContentLoaded", () => {
     let delete_msg = document.querySelector("#delete_msg");
 
     async function update_password(userId, curr_password, new_password){
-        invoke("update_password", { userId: parseInt(userId, 10), curr_password: curr_password, new_password: new_password })
+        invoke("update_password", { userId: userId, curr_password: curr_password, new_password: new_password })
             .then(password => {
                 console.log(password);
                 password_msg.textContent = "Success!";           
@@ -27,7 +27,7 @@ window.addEventListener("DOMContentLoaded", () => {
                 console.error(error);
             });
     }
-    
+
     document.querySelector("#password_form").addEventListener("submit", (e) => {
         e.preventDefault();
         // console.log('testing');

@@ -27,7 +27,6 @@ fn register(username: &str, password: &str, email: &str) -> Result<Vec<User>, St
 fn load_chats(user_id: i32) -> Result<Vec<Chatrooms>, String> {        
     auth::chatroom::load_chats(user_id)
 }
-
 #[tauri::command]
 fn create_chat_room(name: String, user_id: String) -> Result<String, String> {
     // auth::chatroom::load_chats(&user_id)
@@ -66,6 +65,12 @@ fn send_msg(chat_id: String, user_id: String, user_msg: String) -> Result<String
         Ok(string) => Ok(string),
         Err(e) => Err(e)
     }
+}
+
+#[tauri::command]
+fn delete_account(userId: i32) -> Result<String, String>{
+
+    auth::user::delete_account(userId)
 }
 
 fn main() {
