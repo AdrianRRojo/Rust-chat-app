@@ -7,8 +7,8 @@ window.addEventListener("DOMContentLoaded", () => {
     let account_msg = document.querySelector("#account_msg");
     let delete_msg = document.querySelector("#delete_msg");
 
-    async function update_password(userId, curr_password, new_password){
-        invoke("update_password", { userId: userId, curr_password: curr_password, new_password: new_password })
+    async function update_password(user_id, curr_password, new_password){
+        invoke("update_password", { userId: parseInt(user_id, 10), currPassword: curr_password, newPassword: new_password })
             .then(password => {
                 console.log(password);
                 password_msg.textContent = "Success!";    
@@ -33,17 +33,17 @@ window.addEventListener("DOMContentLoaded", () => {
         e.preventDefault();
         // console.log('testing');
 
-        let userId = sessionStorage.getItem('userId');
+        let user_id = sessionStorage.getItem('userId');
         let curr_password = document.querySelector("#account_curr_password"); 
         let new_password = document.querySelector("#account_new_password"); 
         let confirm_password= document.querySelector("#account_confirm_password");
 
-        if (userId && curr_password && new_password && confirm_password){
+        if (user_id && curr_password && new_password && confirm_password){
             // create_chat_room(chat_name.value, user_id);
-            if(new_password != confirm_password){
-                password_msg.textContent = "New passwords do not match";
+            if(new_password.value == confirm_password.value){
+                update_password(user_id, curr_password.value, new_password.value);
             }else{
-                update_password(userId, curr_password, new_password);
+                password_msg.textContent = "New passwords do not match";
             }
         }else{
             password_msg.textContent = "Please fill all fields";

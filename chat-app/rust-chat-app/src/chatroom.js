@@ -48,7 +48,7 @@ async function load_msgs(chat_id) {
         })
 }
 
-async function send_msg(chat_id, user_id, user_msg) {
+async function send_msg(chat_id, user_id, user_msg) { 
     invoke("send_msg", { chatId: chat_id, userId: user_id, userMsg: user_msg })
         .then(msg => {
             console.log(msg);
