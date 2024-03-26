@@ -1,0 +1,5 @@
+{
+    "rust-analyzer.linkedProjects": [
+        ".\\chat-app\\rust-chat-app\\src-tauri\\Cargo.toml"
+    ]
+}

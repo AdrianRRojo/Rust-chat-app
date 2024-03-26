@@ -75,7 +75,7 @@ fn delete_account(userId: i32) -> Result<String, String>{
 
 fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![login,register, load_chats,create_chat_room, join_chat_room, load_msgs,send_msg])
+        .invoke_handler(tauri::generate_handler![login,register, load_chats,create_chat_room, join_chat_room, load_msgs,send_msg,delete_account])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

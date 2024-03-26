@@ -11,7 +11,7 @@ window.addEventListener("DOMContentLoaded", () => {
         invoke("update_password", { userId: userId, curr_password: curr_password, new_password: new_password })
             .then(password => {
                 console.log(password);
-                password_msg.textContent = "Success!";           
+                password_msg.textContent = "Success!";    
             })
             .catch(error => {
                 console.error(error);
@@ -21,6 +21,7 @@ window.addEventListener("DOMContentLoaded", () => {
         invoke("delete_account", { userId: parseInt(userId, 10)})
             .then(delete_response => {
                 console.log(delete_response);
+                window.location.href = 'index.html';
                 delete_msg.textContent = "Success!";           
             })
             .catch(error => {
@@ -53,13 +54,13 @@ window.addEventListener("DOMContentLoaded", () => {
         e.preventDefault();
         // console.log('testing');
         let user_id = sessionStorage.getItem('userId');
-        let delete_response = document.querySelector("delete_input");
-
+        let delete_response = document.querySelector("#delete_input");
+        // console.log(delete_response);
         if (user_id && delete_response){
-            if(delete_response.value != "delete" || delete_response.value != "Delete" ){
-                delete_msg.textContent = "Error: To delete your account please enter 'Delete'";
-            }else{
+            if(delete_response.value == "delete" || delete_response.value == "Delete" ){
                 delete_account(user_id);
+            }else{
+                delete_msg.textContent = "Error: To delete your account please enter 'Delete'";
             }
         }
       });
