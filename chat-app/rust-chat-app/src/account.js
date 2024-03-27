@@ -6,7 +6,13 @@ window.addEventListener("DOMContentLoaded", () => {
     let password_msg = document.querySelector("#password_msg");
     let account_msg = document.querySelector("#account_msg");
     let delete_msg = document.querySelector("#delete_msg");
+    let username = sessionStorage.getItem('username');
+    
+    const usernameDisplay = document.getElementById('account_username');
 
+    if (usernameDisplay && username) {
+        usernameDisplay.placeholder = `${username}`;
+    }
     async function update_password(user_id, curr_password, new_password){
         invoke("update_password", { userId: parseInt(user_id, 10), currPassword: curr_password, newPassword: new_password })
             .then(password => {
@@ -29,7 +35,26 @@ window.addEventListener("DOMContentLoaded", () => {
             });
     }
 
-    document.querySelector("#password_form").addEventListener("submit", (e) => {
+    document.querySelector("#account_info_form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        // console.log('testing');
+
+        let user_id = sessionStorage.getItem('userId');
+        let new_username = document.querySelector("#account_username"); 
+
+        if (user_id, new_username){
+            // create_chat_room(chat_name.value, user_id);
+            if(new_username.value == username){
+                update_password(user_id, curr_password.value, new_password.value);
+            }else{
+                password_msg.textContent = "New passwords do not match";
+            }
+        }else{
+            password_msg.textContent = "Please fill all fields";
+        }
+      });
+      
+      document.querySelector("#password_form").addEventListener("submit", (e) => {
         e.preventDefault();
         // console.log('testing');
 
@@ -49,7 +74,6 @@ window.addEventListener("DOMContentLoaded", () => {
             password_msg.textContent = "Please fill all fields";
         }
       });
-
       document.querySelector("#delete_form").addEventListener("submit", (e) => {
         e.preventDefault();
         // console.log('testing');
