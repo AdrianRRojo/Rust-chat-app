@@ -69,17 +69,20 @@ fn send_msg(chat_id: String, user_id: String, user_msg: String) -> Result<String
 
 #[tauri::command]
 fn delete_account(userId: i32) -> Result<String, String>{
-
     auth::user::delete_account(userId)
 }
 #[tauri::command]
 fn update_password(userId: i32, curr_password: String, new_password: String) -> Result<String, String>{
-
     auth::user::update_password(userId, curr_password, new_password)
+}
+#[tauri::command]
+fn update_username(user_id: i32,newUsername: String) -> Result<String, String>{
+    auth::user::update_username(user_id, newUsername)
 }
 fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![login,register, load_chats,create_chat_room, join_chat_room, load_msgs,send_msg,delete_account,update_password])
+        .invoke_handler(tauri::generate_handler![login,register, load_chats,create_chat_room, 
+            join_chat_room, load_msgs,send_msg,delete_account,update_password, update_username])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

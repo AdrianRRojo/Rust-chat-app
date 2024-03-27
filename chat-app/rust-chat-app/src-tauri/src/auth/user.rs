@@ -5,6 +5,25 @@ use mysql::{prelude::Queryable, *};
 use bcrypt::{hash, verify, DEFAULT_COST};
 use std::env;
 
+pub fn update_username(user_id: i32, new_username: String) -> Result<String, String>{
+    dotenv().ok();
+    let db_url = env::var("DB_URL").expect("Failed to find DB url");
+    let opts = Opts::from_url(&db_url).expect("Invalid DB Url");
+    let pool = Pool::new(opts).expect("Failed to create pool");
+
+    let mut conn = pool.get_conn().expect("Error");
+
+    conn.exec_drop(
+        "UPDATE users SET username = :new_username WHERE id = :user_id",
+        params! {
+            "username" => new_username,
+            "user_id" => user_id,
+        },
+    ).map_err(|e| e.to_string())?;
+    
+    Ok("Uodate Successful!".to_string())
+}
+
 pub fn delete_account(user_id: i32) -> Result<String, String> {
     dotenv().ok();
     let db_url = env::var("DB_URL").expect("Failed to find DB url");

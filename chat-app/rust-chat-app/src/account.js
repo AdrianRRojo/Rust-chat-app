@@ -34,23 +34,31 @@ window.addEventListener("DOMContentLoaded", () => {
                 console.error(error);
             });
     }
-
+    async function update_username(user_id, new_username){
+        console.log(new_username);
+        invoke("update_username", { userId: parseInt(user_id, 10), newUsername: new_username })
+            .then(response => {
+                console.log(response);
+                account_msg.textContent = "Success!";    
+            })
+            .catch(error => {
+                console.error(error);
+                account_msg.textContent = error;
+            });
+    }
     document.querySelector("#account_info_form").addEventListener("submit", (e) => {
         e.preventDefault();
-        // console.log('testing');
 
         let user_id = sessionStorage.getItem('userId');
         let new_username = document.querySelector("#account_username"); 
 
         if (user_id, new_username){
-            // create_chat_room(chat_name.value, user_id);
             if(new_username.value == username){
-                update_password(user_id, curr_password.value, new_password.value);
+                account_msg.textContent = "New username cannot be the same as your previous username.";
             }else{
-                password_msg.textContent = "New passwords do not match";
+                console.log(new_username.value);
+                update_username(user_id, new_username.value);
             }
-        }else{
-            password_msg.textContent = "Please fill all fields";
         }
       });
       
