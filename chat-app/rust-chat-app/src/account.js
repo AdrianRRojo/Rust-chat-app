@@ -4,15 +4,7 @@ window.addEventListener("DOMContentLoaded", () => {
     //const username = sessionStorage.getItem('username');
 
     let password_msg = document.querySelector("#password_msg");
-    let account_msg = document.querySelector("#account_msg");
     let delete_msg = document.querySelector("#delete_msg");
-    let username = sessionStorage.getItem('username');
-    
-    const usernameDisplay = document.getElementById('account_username');
-
-    if (usernameDisplay && username) {
-        usernameDisplay.placeholder = `${username}`;
-    }
     async function update_password(user_id, curr_password, new_password){
         invoke("update_password", { userId: parseInt(user_id, 10), currPassword: curr_password, newPassword: new_password })
             .then(password => {
@@ -34,34 +26,7 @@ window.addEventListener("DOMContentLoaded", () => {
                 console.error(error);
             });
     }
-    async function update_username(user_id, new_username){
-        console.log(new_username);
-        invoke("update_username", { userId: parseInt(user_id, 10), newUsername: new_username })
-            .then(response => {
-                console.log(response);
-                account_msg.textContent = "Success!";    
-            })
-            .catch(error => {
-                console.error(error);
-                account_msg.textContent = error;
-            });
-    }
-    document.querySelector("#account_info_form").addEventListener("submit", (e) => {
-        e.preventDefault();
 
-        let user_id = sessionStorage.getItem('userId');
-        let new_username = document.querySelector("#account_username"); 
-
-        if (user_id, new_username){
-            if(new_username.value == username){
-                account_msg.textContent = "New username cannot be the same as your previous username.";
-            }else{
-                console.log(new_username.value);
-                update_username(user_id, new_username.value);
-            }
-        }
-      });
-      
       document.querySelector("#password_form").addEventListener("submit", (e) => {
         e.preventDefault();
         // console.log('testing');
