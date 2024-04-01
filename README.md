@@ -23,9 +23,23 @@ In addition to the main objectives, the following features are considered as bon
 
 ### GUI
 
+Chatroom
+---
 ![Chat Room](/assets/chatroom.png "Chat room")
 
+Options and Settings
+---
 ![Chat Room options](/assets/chatroom_options.png "Chat room options")
+
+![Settings](/assets/Settings.png "Settings")
+
+Register / Login Forms
+---
+![Register form](/assets/register.png "Register form")
+
+![Login form](/assets/Login.png "Login form")
+
+
 
 ### How to Download and Set Up This Application
 The application setup instructions are straightforward. Follow these steps to get started:
