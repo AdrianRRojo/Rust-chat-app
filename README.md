@@ -20,6 +20,13 @@ In addition to the main objectives, the following features are considered as bon
 - [ ] Allow for image and video uploads
 - [ ] Add a GIF search option
 
+
+### GUI
+
+![Chat Room](/assets/chatroom.png "Chat room")
+
+![Chat Room options](/assets/chatroom_options.png "Chat room options")
+
 ### How to Download and Set Up This Application
 The application setup instructions are straightforward. Follow these steps to get started:
 
