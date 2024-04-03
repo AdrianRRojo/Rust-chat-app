@@ -21,7 +21,7 @@ In addition to the main objectives, the following features are considered as bon
 - [ ] Add a GIF search option
 
 
-### GUI
+### GUI -- Mockups
 
 Chatroom
 ---

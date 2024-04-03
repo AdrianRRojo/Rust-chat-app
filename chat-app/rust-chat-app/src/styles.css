@@ -1,11 +1,17 @@
+/* .montserrat{
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 00;
+  font-style: normal;
+} */
 :root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Montserrat, sans-serif;
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
 
-  color: #0f0f0f;
-  background-color: #f6f6f6;
+  color: #F8F9FA;
+  background-color: #212529;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -13,6 +19,7 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+
 
 .container {
   margin: 0;
@@ -30,6 +37,17 @@
   transition: 0.75s;
 
 }
+h1{
+  font-size: 5vw;
+  font-weight: 300;
+}
+.header_line{
+  margin-top: -5px;
+  width: 75%;
+}
+.forms{
+  margin-top: 5vw;
+}
 #login-form, #register-form {
   display: flex;
   flex-direction: column;
@@ -43,8 +61,8 @@
 #login-form button,
 #register-form input, 
 #register-form button {
-  margin-bottom: 1vw; /* Adjust spacing between form items */
-  width: 50%; /* This sets the width of input and button elements */
+  margin-bottom: 1.25vw; /* Adjust spacing between form items */
+  width: 75%; /* This sets the width of input and button elements */
 }
 #rules{
   display: flex;
@@ -137,7 +155,7 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #F8F9FA;
   text-decoration: inherit;
 }
 
@@ -149,18 +167,26 @@ h1 {
   text-align: center;
 }
 
+input::placeholder {
+  color: #212529;
+}
+
 input,
 button {
-  border-radius: 8px;
+  /* border-radius: 8px; */
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  color: #0f0f0f;
-  background-color: #ffffff;
+  /* color: #0f0f0f; */
+  /* background-color: #ffffff; */
   transition: border-color 0.25s;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  color: #ffffff;
+  background-color: #6C757D;
+  border-radius: 10vw;
+  border-color: #F8F9FA;
 }
 
 button {
@@ -168,11 +194,11 @@ button {
 }
 
 button:hover {
-  border-color: #396cd8;
+  border-color: #495057;
 }
 button:active {
-  border-color: #396cd8;
-  background-color: #e8e8e8;
+  border-color: #495057;
+  /* background-color: #e8e8e8; */
 }
 
 input,
@@ -184,7 +210,7 @@ button {
   margin-right: 5px;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     color: #f6f6f6;
     background-color: #2f2f2f;
@@ -192,17 +218,11 @@ button {
 
   a:hover {
     color: #24c8db;
-  }
-
-  input,
-  button {
-    color: #ffffff;
-    background-color: #0f0f0f98;
-  }
+  } */
   button:active {
     background-color: #0f0f0f69;
   }
-}
+
 .account_options{
   flex-direction: column;
   display: flex;
