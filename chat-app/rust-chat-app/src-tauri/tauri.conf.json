@@ -19,8 +19,8 @@
     "windows": [
       {
         "title": "ChatMe",
-        "width": 800,
-        "height": 900
+        "width": 920,
+        "height": 640
       }
     ],
     "security": {

@@ -18,6 +18,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+  overflow: hidden;
 }
 
 
@@ -48,32 +49,45 @@ h1{
 .forms{
   margin-top: 5vw;
 }
-#login-form, #register-form {
+#login-form{
   display: flex;
   flex-direction: column;
-  align-items: center; /* This centers the form items horizontally */
-  justify-content: center; /* This centers the form vertically if the form's parent container allows it */
-  margin: auto; /* This can help center the form itself if within another flex container or similar */
-  width: 50%; /* Adjust the width as necessary */
+  align-items: center; 
+  justify-content: center; 
+  margin: auto;
+  width: 50%; 
 }
-
+#register-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; 
+  margin: auto; 
+  width: 100vw; 
+}
+#register-form button{
+  width: 40vw; 
+  margin-top: 1vw;
+}
+#register-form input {
+  margin: .5vw;
+}
 #login-form input, 
 #login-form button,
-#register-form input, 
-#register-form button {
-  margin-bottom: 1.25vw; /* Adjust spacing between form items */
-  width: 75%; /* This sets the width of input and button elements */
+#register-form input {
+  margin-bottom: 1.25vw; 
+  width: 75%; 
 }
 #rules{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: left;
+  align-items: center;
   text-align: left;
-  position: absolute;
+  /* position: absolute; */
 }
 #rules p{
-  margin-top: -15px;
+  margin-top: -10px;
 }
 .logo:hover {
   filter: drop-shadow(0 0 2em #24c8db);

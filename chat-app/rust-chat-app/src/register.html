@@ -1,44 +1,63 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" href="styles.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ChatMe</title>
-    <script type="module" src="/register.js" defer></script>
-    <style>
-      .logo.vanilla:hover {
-        filter: drop-shadow(0 0 2em #ffe21c);
-      }
-    </style>
-  </head>
 
-  <body>
-    <div class="container">
-      <!-- <h1>Register</h1> -->
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
 
-      <div class="row">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChatMe</title>
+  <script type="module" src="/register.js" defer></script>
+  <style>
+    .logo.vanilla:hover {
+      filter: drop-shadow(0 0 2em #ffe21c);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Register</h1>
+    <hr class="header_line" />
+    <!-- <div class="row">
         <a href="/">
           <img src="/assets/chatMe_logo_noBG.png" class="logo" alt="chatMe logo" />
         </a>
-      </div>
+      </div> -->
+    <!-- <div id="rules">
+        <h5><u>Your Password must meet all requirements</u></h5>
+          <p> Must be at least 8 characters in length</p>
+          <p> Must include a number </p>
+          <p> Must include a special character (i.e: !?#)</p>
+      </div> -->
+    <div class="forms">
+      <form id="register-form">
+        <div class="row">
+          <input id="email" type="email" placeholder="Email" />
+          <input id="reg_username" placeholder="Username" />
+        </div>
+        <div class="row">
+          <input id="reg_password" placeholder="Password" type="password" />
+          <input id="confirm_password" type="password" placeholder="Confirm Password" />
+        </div>
+        <button type="submit">Register</button>
+      </form>
+      <p>Already have an account? <a href="/index.html"><u>Login here.</u></a></p>
+      <p id="msg"></p>
       <div id="rules">
         <h5><u>Your Password must meet all requirements</u></h5>
           <p> Must be at least 8 characters in length</p>
           <p> Must include a number </p>
           <p> Must include a special character (i.e: !?#)</p>
       </div>
-      <form id="register-form">
-        <input id="email" type="email" placeholder="Email" />
-        <input id="reg_username" placeholder="Username" />
-        <input id="reg_password" placeholder="Password" type="password"/>
-
-        <input id="confirm_password" type="password" placeholder="Confirm Password" />
-
-        <button type="submit">Register</button>
-      </form>
-      <p id="msg"></p>
     </div>
-  </body>
-</html>
 
+
+  </div>
+</body>
+
+</html>
