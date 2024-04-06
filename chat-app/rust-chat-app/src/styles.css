@@ -92,17 +92,32 @@ h1{
 .logo:hover {
   filter: drop-shadow(0 0 2em #24c8db);
 }
+#options{
+  background-color: #ADB5BD;
+  height: 70vw;
+  width: 20vw;
+  margin-left: -.75vw;
+  border-radius: 5vw;
+}
 #chatoptions, #options{
   display: flex;
   flex-direction: column;
   margin-bottom: 1vw;
 }
 .optionBtn{
-  width: 25vw;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 0vw;
   margin-bottom: 1vw;
   outline: none !important;
+  background: none;
+  border: none;
+  padding: 0; 
 }
-.optionBtn:focus {
+.optionBtn-acc{
+  width: 25vw;
+  margin-bottom: 1vw;
   outline: none !important;
 }
 .chatrooms{

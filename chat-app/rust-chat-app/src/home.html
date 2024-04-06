@@ -11,32 +11,55 @@
   <body>
     <div class="">
       <div class="row">
-        <a href="/account.html">
+        <!-- <a href="/account.html">
           <img src="/assets/std_pfp.png" class="logo" alt="Profile Picture" />
-        </a>
+        </a> -->
       </div>
       <!-- <button></button> -->
       <div id="chatoptions">
         <!-- <h1>Chats</h1> -->
           <div class="chatrooms"></div> 
         <!-- <hr/> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <div id="options">
-          <span id="usernameDisplay" style="border-bottom: 2px solid white; margin-bottom: .8vw; width: 25%;"></span>
-          <button class="optionBtn" onclick="show('create_chat')" >Create a new chat</button>
+          <!-- <span id="usernameDisplay" style="border-bottom: 2px solid white; margin-bottom: .8vw; width: 25%;"></span> -->
+          <a href="/account.html">
+            <img src="/assets/std_pfp.png" class="logo" alt="Profile Picture" />
+          </a>
+          <button class="optionBtn" onclick="show('create_chat')" > 
+            <img src="/assets/plus-svgrepo-com.svg" alt="Options" />
+          </button>
+
           <div id="create_chat">
             <form id="create_chat_form">
                 <input id="chat_name" placeholder="Chat name?"/>
                 <button type="submit">Submit</button>
             </form>
           </div>
-        </div>
-          <button class="optionBtn" onclick="show('join_chat')" >Join a chat</button>
+          <button class="optionBtn" onclick="show('join_chat')" >
+            <img src="/assets/settings.svg" alt="Settings" />
+          </button>
           <div id="join_chat">
             <form id="join_chat_form">
                 <input id="access_code" placeholder="Access code"/>
                 <button type="submit">Submit</button>
             </form>
           </div>
+        </div>
         </div>
     </div>
         <p id="msg"></p>
