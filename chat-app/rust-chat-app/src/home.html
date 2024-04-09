@@ -1,75 +1,66 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" href="styles.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ChatMe</title>
-    <script type="module" src="/home.js" defer></script>
-  </head>
 
-  <body>
-    <div class="">
-      <div class="row">
-        <!-- <a href="/account.html">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChatMe</title>
+  <script type="module" src="/home.js" defer></script>
+</head>
+
+<body>
+  <div class="">
+    <div class="row">
+      <!-- <a href="/account.html">
           <img src="/assets/std_pfp.png" class="logo" alt="Profile Picture" />
         </a> -->
+    </div>
+    <!-- <button></button> -->
+    <div id="chatoptions">
+      <!-- <h1>Chats</h1> -->
+      <div class="chatrooms"></div>
+      <!-- <hr/> -->
+
+      <div id="options">
+        <!-- <span id="usernameDisplay" style="border-bottom: 2px solid white; margin-bottom: .8vw; width: 25%;"></span> -->
+        <a href="/account.html">
+          <img src="/assets/std_pfp.png" class="logo" alt="Profile Picture" />
+        </a>
+        <div class="svgOptions">
+          <button class="optionBtn" onclick="show('create_chat')">
+            <img src="/assets/plus-svgrepo-com.svg" alt="Options" class="svgButtons"/>
+          </button>
+          <button class="optionBtn" onclick="show('join_chat')">
+            <img src="/assets/settings.svg" alt="Settings" class="svgButtons"/>
+          </button>
+        </div>
+
+
+        <div id="create_chat">
+          <form id="create_chat_form">
+            <input id="chat_name" placeholder="Chat name?" />
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+        <div id="join_chat">
+          <form id="join_chat_form">
+            <input id="access_code" placeholder="Access code" />
+            <button type="submit">Submit</button>
+          </form>
+        </div>
       </div>
-      <!-- <button></button> -->
-      <div id="chatoptions">
-        <!-- <h1>Chats</h1> -->
-          <div class="chatrooms"></div> 
-        <!-- <hr/> -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <div id="options">
-          <!-- <span id="usernameDisplay" style="border-bottom: 2px solid white; margin-bottom: .8vw; width: 25%;"></span> -->
-          <a href="/account.html">
-            <img src="/assets/std_pfp.png" class="logo" alt="Profile Picture" />
-          </a>
-          <button class="optionBtn" onclick="show('create_chat')" > 
-            <img src="/assets/plus-svgrepo-com.svg" alt="Options" />
-          </button>
-
-          <div id="create_chat">
-            <form id="create_chat_form">
-                <input id="chat_name" placeholder="Chat name?"/>
-                <button type="submit">Submit</button>
-            </form>
-          </div>
-          <button class="optionBtn" onclick="show('join_chat')" >
-            <img src="/assets/settings.svg" alt="Settings" />
-          </button>
-          <div id="join_chat">
-            <form id="join_chat_form">
-                <input id="access_code" placeholder="Access code"/>
-                <button type="submit">Submit</button>
-            </form>
-          </div>
-        </div>
-        </div>
     </div>
-        <p id="msg"></p>
-    </div>
-  </body>
+  </div>
+  <p id="msg"></p>
+  </div>
+</body>
+
 </html>
 
 <script>
-      function show(divId){
-        let div = document.querySelector(`#${divId}`);
-        div.style.display = "block"; 
-    }
+  function show(divId) {
+    let div = document.querySelector(`#${divId}`);
+    div.style.display = "block";
+  }
 </script>

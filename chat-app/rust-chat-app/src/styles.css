@@ -94,7 +94,7 @@ h1{
 }
 #options{
   background-color: #ADB5BD;
-  height: 70vw;
+  height: 69vw;
   width: 20vw;
   margin-left: -.75vw;
   border-radius: 5vw;
@@ -119,6 +119,16 @@ h1{
   width: 25vw;
   margin-bottom: 1vw;
   outline: none !important;
+}
+.svgButtons{
+  width: 3vw;
+}
+.svgOptions{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 80%;
+  align-items: flex-end;
 }
 .chatrooms{
   display: flex;
