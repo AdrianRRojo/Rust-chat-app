@@ -152,8 +152,23 @@ h1{
   margin-right: auto;
   margin-top: 10vw;
 }
-#create_chat,#join_chat{
+#create_chat, #join_chat{
+  background-color: #343A40;
+  height: 15vw;
+  width: 19vw;
   display: none;
+  margin: auto;
+  border-radius: 3vw;
+}
+#create_chat button, #join_chat button{
+  width: 10vw;
+  margin-top: 1vw;
+  margin-left: auto; 
+  margin-right: auto;
+}
+#create_chat input, #join_chat input{
+  width: 14vw;
+  margin-top: 1vw;
 }
 #msg_form{
   max-width: fit-content;

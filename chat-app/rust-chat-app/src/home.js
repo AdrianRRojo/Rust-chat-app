@@ -49,11 +49,11 @@ async function join_chat_room(user_id, access_code){
 }
 window.addEventListener("DOMContentLoaded", () => {
     const username = sessionStorage.getItem('username');
-    const usernameDisplay = document.getElementById('usernameDisplay');
+    // const usernameDisplay = document.getElementById('usernameDisplay');
 
-    if (usernameDisplay && username) {
-        usernameDisplay.textContent = `${username}`;
-        load_chats();
+    if (username) {
+        // usernameDisplay.textContent = `${username}`;
+        // load_chats();
     }
 
     document.querySelector("#create_chat_form").addEventListener("submit", (e) => {
