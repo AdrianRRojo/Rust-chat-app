@@ -53,7 +53,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     if (username) {
         // usernameDisplay.textContent = `${username}`;
-        // load_chats();
+        load_chats();
     }
 
     document.querySelector("#create_chat_form").addEventListener("submit", (e) => {
