@@ -92,10 +92,16 @@ h1{
 .logo:hover {
   filter: drop-shadow(0 0 2em #24c8db);
 }
+#chats{
+  /* margin-top: 10vw; */
+  margin-left: 16vw;
+  margin-right: auto;
+}
 #options{
   background-color: #ADB5BD;
   height: 69vw;
   width: 20vw;
+  position: absolute;
   margin-left: -.75vw;
   border-radius: 5vw;
 }
@@ -149,7 +155,7 @@ h1{
   text-align: left;
 }
 #chatroom-name{
-  margin-top: -2.5vw;
+  /* margin-top: -2.5vw; */
 }
 #chatroom-content{
   max-width: 40vw;

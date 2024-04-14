@@ -16,6 +16,36 @@
           <img src="/assets/chatMe_logo_noBG.png" class="logo" alt="chatMe logo" />
         </a>
       </div>
+      
+      <div id="options">
+        <!-- <span id="usernameDisplay" style="border-bottom: 2px solid white; margin-bottom: .8vw; width: 25%;"></span> -->
+        <a href="/account.html">
+          <img src="/assets/std_pfp.png" class="logo" alt="Profile Picture" />
+        </a>
+        <div class="svgOptions">
+          <button class="optionBtn" onclick="show('create_chat')">
+            <img src="/assets/plus-svgrepo-com.svg" alt="Options" class="svgButtons"/>
+          </button>
+          <button class="optionBtn" onclick="show('join_chat')">
+            <img src="/assets/settings.svg" alt="Settings" class="svgButtons"/>
+          </button>
+        </div>
+        <div class="chatrooms"></div>
+
+
+        <div id="create_chat">
+          <form id="create_chat_form">
+            <input id="chat_name" placeholder="Chat name?" />
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+        <div id="join_chat">
+          <form id="join_chat_form">
+            <input id="access_code" placeholder="Access code" />
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
       <!-- <button></button> -->
       <h1 id="chatroom-name">Chat Room Name</h1>
       <!-- Placeholder for chatroom content -->
