@@ -157,6 +157,7 @@ h1{
 #chatroom-name{
   /* margin-top: -2.5vw; */
 }
+
 #chatroom-content{
   max-width: 55vw;
   margin-left: auto;
@@ -181,10 +182,29 @@ h1{
   width: 14vw;
   margin-top: 1vw;
 }
+.form_container {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
 #msg_form{
   max-width: fit-content;
   margin-left: auto;
   margin-right: auto;
+}
+#user_msg{
+  flex: 1;
+}
+#msg_submit{
+  background-color: transparent;
+  box-shadow: none;
+  border: none;
+  height: 5vw;
+  width: 6vw;
+  position: absolute;
+}
+#msg_img{
+  width: 3vw;
 }
 .message{
   border: 2px solid grey;
