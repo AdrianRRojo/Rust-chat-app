@@ -186,6 +186,10 @@ h1{
   display: flex;
   align-items: center;
   justify-content: end;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
 }
 #msg_form{
   max-width: fit-content;
@@ -193,18 +197,22 @@ h1{
   margin-right: auto;
 }
 #user_msg{
+  width: 40vw;
+  margin-left: 15vw;
   flex: 1;
+  margin-bottom: 1vw;
 }
 #msg_submit{
   background-color: transparent;
   box-shadow: none;
   border: none;
-  height: 5vw;
+  /* height: 5vw; */
   width: 6vw;
   position: absolute;
 }
 #msg_img{
-  width: 3vw;
+  width: 4vw;
+  margin-top: -.5vw;
 }
 .message{
   border: 2px solid grey;
