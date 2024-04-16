@@ -5,7 +5,7 @@ This chat application is designed with the following objectives in mind
 
 - [x] Learn to use MySQL in Rust to manage database operations.
 - [x] Continue learning to use Rust
-- [ ] Create a Graphical User Interface (GUI)
+- [x] Create a Graphical User Interface (GUI)
 - [x] Implement user authentication to allow for login/logout functionalities.
 - [x] Support the creation of group chats
 - [x] Generate invite links to group chats, making it easier to add new members.

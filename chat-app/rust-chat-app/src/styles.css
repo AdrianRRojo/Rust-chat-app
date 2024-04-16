@@ -159,10 +159,12 @@ h1{
 }
 
 #chatroom-content{
-  max-width: 55vw;
+  max-width: 75%;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 10vw;
+  display: flex;
+  /* margin-top: 10vw; */
+  flex-direction: column;
 }
 #create_chat, #join_chat{
   background-color: #343A40;
@@ -232,13 +234,19 @@ h1{
   margin-left: 2vw;
   position: relative;
 }
+.user-chatMsgs{
+  margin-left: auto;
+}
 .user-message{
   border: 2px solid #498dbb;
   background-color: #498dbb;
   border-radius: 1vw;
   border-bottom-right-radius: 0px;
   padding: 5px;
-  margin-left: 21vw;
+  /* margin-left: 21vw; */
+  /* margin-right: auto; */
+  position: relative;
+  right: 0vw;
 }
 .row {
   display: flex;
